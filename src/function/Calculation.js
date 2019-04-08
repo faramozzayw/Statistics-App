@@ -15,22 +15,24 @@ const Calculation = (x, n) => {
 
 	resultObject.average = (() => {
 		let result = 0;
-		for (let i = 0; i < x.length; i++) result += x[i] * n[i];
+		for (let i = 0; i < x.length; i++) {
+			result += x[i] * n[i];
+		}
 		result /= sumOfN;
 		return result;
 	})();
 
-
 	resultObject.variance = (() => {
 		let result = 0;
-
 		for (let i = 0; i < x.length; i++) {
-			console.log("[result before]: ", result);
 			result += ((x[i] - resultObject.average) ** 2) * n[i];
-			console.log("[result after]: ", result);
 		}
 		result /= sumOfN;
 		return result;
+	})();
+
+	resultObject.deviation = (() => {
+		return Math.sqrt(resultObject.variance)
 	})();
 
 	return resultObject;
