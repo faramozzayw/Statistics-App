@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
+import Calculation from './../function/Calculation';
+import ParseToArray from './../function/ParseToArray';
 
 export default class  extends Component {
 	state = {
 		x:'',
 		n: '',
+		result: {}
 	}
 
 	handleInputChange = e => this.setState({[e.target.name]: e.target.value})
@@ -11,7 +14,26 @@ export default class  extends Component {
 	handleClick = e => {
 		e.preventDefault();
 		console.clear();
-		console.log(this.state);
+		let regExp = new RegExp(/[a-z\.а-я]/gi);
+
+		if (regExp.test(this.state.x) || regExp.test(this.state.n) 
+			|| this.state.x.trim() === '' || this.state.n.trim() === '') {
+			alert('Input error. Check the correctness of the data.')
+			return;
+		}
+
+
+		let x = ParseToArray(this.state.x);
+		let n = ParseToArray(this.state.n);
+		console.log(`
+			[x]: ${x} => [typeof]: ${typeof x}
+			[n]: ${n} => [typeof]: ${typeof n}
+		`);
+
+
+
+		//let result = Calculation();
+		//console.log("result", result);
 	}
 
 	render()  {

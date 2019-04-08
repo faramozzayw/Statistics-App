@@ -3,7 +3,6 @@ import '../css/App.css';
 import Jumbotron from './Jumbotron';
 import Form from './Form';
 
-
 class App extends Component {
   render() {
     return (
