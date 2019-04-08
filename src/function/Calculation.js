@@ -13,6 +13,17 @@ const Calculation = (x, n) => {
 	let sumN = n.reduce((accumulator, currentValue) => accumulator + currentValue);
 	console.log("[sumN]: ", sumN);
 
+	resultObject.average = (function() {
+		let result = 0;
+
+		for (let i = 0; i < x.length; i++) {
+			result += x[i] * n[i];
+		}
+
+		result /= sumN;
+		return result;
+	})();
+
 	return resultObject;
 }
 

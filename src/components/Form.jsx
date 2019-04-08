@@ -14,7 +14,7 @@ export default class  extends Component {
 	handleClick = e => {
 		e.preventDefault();
 		console.clear();
-		let regExp = new RegExp(/[a-z\.а-я]/gi);
+		let regExp = new RegExp('/[a-zа-я\.]/gi');
 
 		if (regExp.test(this.state.x) || regExp.test(this.state.n) 
 			|| this.state.x.trim() === '' || this.state.n.trim() === '') {
@@ -54,7 +54,7 @@ export default class  extends Component {
 			            				/>
 			         	</div>				
 			        		<button className="uk-button uk-button-primary"
-			        		onClick={this.handleClick.bind(this)}>Start a root separation</button>
+			        		onClick={this.handleClick.bind(this)}>Start calculus</button>
 			        </div>
 			    </fieldset>
 				</form>
