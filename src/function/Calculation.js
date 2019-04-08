@@ -1,7 +1,7 @@
 const Calculation = (x, n) => {
 	console.log(`
-		[x]: ${x} => [typeof]: ${typeof x}
-		[n]: ${n} => [typeof]: ${typeof n}
+		[x]: ${x}
+		[n]: ${n}
 	`);
 
 	let resultObject = {
@@ -10,17 +10,26 @@ const Calculation = (x, n) => {
 		variance: null
 	};
 
-	let sumN = n.reduce((accumulator, currentValue) => accumulator + currentValue);
-	console.log("[sumN]: ", sumN);
+	let sumOfN = n.reduce((accumulator, currentValue) => accumulator + currentValue);
+	console.log("[sumOfN]: ", sumOfN);
 
-	resultObject.average = (function() {
+	resultObject.average = (() => {
+		let result = 0;
+		for (let i = 0; i < x.length; i++) result += x[i] * n[i];
+		result /= sumOfN;
+		return result;
+	})();
+
+
+	resultObject.variance = (() => {
 		let result = 0;
 
 		for (let i = 0; i < x.length; i++) {
-			result += x[i] * n[i];
+			console.log("[result before]: ", result);
+			result += ((x[i] - resultObject.average) ** 2) * n[i];
+			console.log("[result after]: ", result);
 		}
-
-		result /= sumN;
+		result /= sumOfN;
 		return result;
 	})();
 
