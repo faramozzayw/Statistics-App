@@ -22,18 +22,14 @@ export default class  extends Component {
 			return;
 		}
 
+		const [x, n] = [ParseToArray(this.state.x), ParseToArray(this.state.n)]
+		if (x.length !== n.length) {
+			alert('Input error. Check the correctness of the data.')
+			return;
+		}
 
-		let x = ParseToArray(this.state.x);
-		let n = ParseToArray(this.state.n);
-		console.log(`
-			[x]: ${x} => [typeof]: ${typeof x}
-			[n]: ${n} => [typeof]: ${typeof n}
-		`);
-
-
-
-		//let result = Calculation();
-		//console.log("result", result);
+		let result = Calculation(x, n);
+		console.log("result", result);
 	}
 
 	render()  {

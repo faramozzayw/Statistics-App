@@ -1,17 +1,19 @@
 const Calculation = (x, n) => {
-	//let resultObject = {};
+	console.log(`
+		[x]: ${x} => [typeof]: ${typeof x}
+		[n]: ${n} => [typeof]: ${typeof n}
+	`);
 
-	//return object;
+	let resultObject = {
+		average: null,
+		deviation: null,
+		variance: null
+	};
+
+	let sumN = n.reduce((accumulator, currentValue) => accumulator + currentValue);
+	console.log("[sumN]: ", sumN);
+
+	return resultObject;
 }
-
-//const average = (x, n) => {
-//	let result;
-//
-//	for (let i = 0; i < x.length; i++) {
-//		
-//	}
-//
-//	return result;
-//}
 
 export default Calculation;
