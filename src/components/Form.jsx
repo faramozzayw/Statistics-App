@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
+
 import Calculation from './../modules/Calculation';
 import ParseToArray from './../modules/ParseToArray';
 
-export default class  extends Component {
+import Card from './Card';
+
+export default class Form extends Component {
 	state = {
 		x:'',
 		n: '',
@@ -10,7 +13,8 @@ export default class  extends Component {
 			average: null,
 			deviation: null,
 			variance: null
-		}
+		},
+		viewResult: false
 	}
 
 	handleInputChange = e => this.setState({[e.target.name]: e.target.value})
@@ -18,19 +22,29 @@ export default class  extends Component {
 	handleClick = e => {
 		e.preventDefault();
 		console.clear();
+
 		let regExp = new RegExp('/[a-zа-я\.]/gi');
 
 		if (regExp.test(this.state.x) || regExp.test(this.state.n) 
 			|| this.state.x.trim() === '' || this.state.n.trim() === '') {
-			alert('Input error. Check the correctness of the data.')
+			alert('Input error. Review the correctness of the data.');
 			return;
 		}
 
 		const [x, n] = [ParseToArray(this.state.x), ParseToArray(this.state.n)];
 		if (x.length !== n.length) {
-			alert('Input error. Check the correctness of the data.')
+			alert('Input error. Review the correctness of the data.');
 			return;
 		}
+
+		(() => {
+			for (let i = 0; i < x.length; i++) {
+				if (x[i] > x[i + 1]) {
+					alert('Input error. Review the correctness of the data.');
+					return;
+				}
+			}
+		})();
 
 		let result = Calculation(x, n);
 		this.setState({
@@ -38,7 +52,15 @@ export default class  extends Component {
 		});
 	}
 
+	getResultClick = e => {
+		e.preventDefault();
+		this.setState({ viewResult: !this.state.viewResult });
+	}
+
 	render()  {
+		const resultCard = this.state.viewResult && (
+			<Card average={this.state.result.average} deviation={this.state.result.deviation} variance={this.state.result.variance} />
+		);
 		return (
 			<div className="uk-container">
 				<form>
@@ -58,12 +80,15 @@ export default class  extends Component {
 			            				name='n'
 													onChange={this.handleInputChange.bind(this)}
 			            				/>
-			         	</div>				
-			        		<button className="uk-button uk-button-primary"
+			        </div>				
+			        <button className="uk-button uk-button-primary"
 			        		onClick={this.handleClick.bind(this)}>Start calculus</button>
+			        <button className="uk-button uk-button-primary"
+			        		onClick={this.getResultClick.bind(this)}>Get result</button>
 			        </div>
 			    </fieldset>
 				</form>
+				{resultCard}
 			</div>
 		);
 	}

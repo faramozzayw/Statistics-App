@@ -12,3 +12,7 @@
   color: white;
   padding-top: 5%;
 }
+
+.Card {
+	max-width: 35rem;
+}
