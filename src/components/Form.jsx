@@ -14,10 +14,15 @@ export default class Form extends Component {
 			deviation: null,
 			variance: null
 		},
-		viewResult: false
+		canGetResult: false,
+		showResult: false
 	}
 
-	handleInputChange = e => this.setState({[e.target.name]: e.target.value})
+	handleInputChange = e => this.setState({
+		[e.target.name]: e.target.value,
+		canGetResult: false,
+		showResult: false
+	})
 
 	handleClick = e => {
 		e.preventDefault();
@@ -48,19 +53,21 @@ export default class Form extends Component {
 
 		let result = Calculation(x, n);
 		this.setState({
-			result: Object.assign(result)
+			result: Object.assign(result),
+			canGetResult: true
 		});
 	}
 
 	getResultClick = e => {
 		e.preventDefault();
-		this.setState({ viewResult: !this.state.viewResult });
+		this.state.canGetResult && this.setState({ showResult: !this.state.showResult });
 	}
 
 	render()  {
-		const resultCard = this.state.viewResult && (
+		const resultCard = this.state.showResult && (
 			<Card average={this.state.result.average} deviation={this.state.result.deviation} variance={this.state.result.variance} />
 		);
+		const resultButtonText = this.state.showResult ? "Hide result" : "Show result";
 		return (
 			<div className="uk-container">
 				<form>
@@ -81,10 +88,10 @@ export default class Form extends Component {
 													onChange={this.handleInputChange.bind(this)}
 			            				/>
 			        </div>				
-			        <button className="uk-button uk-button-primary"
+			        <button className="uk-button uk-button-primary uk-width-1-1 uk-margin-small-bottom"
 			        		onClick={this.handleClick.bind(this)}>Start calculus</button>
-			        <button className="uk-button uk-button-primary"
-			        		onClick={this.getResultClick.bind(this)}>Get result</button>
+			        <button className={`uk-button ${ this.state.canGetResult ? "uk-button-primary" : "uk-button-secondary" } uk-width-1-1 uk-margin-small-bottom` }
+			        		onClick={this.getResultClick.bind(this)}>{resultButtonText}</button>
 			        </div>
 			    </fieldset>
 				</form>
