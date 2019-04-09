@@ -1,13 +1,13 @@
 {
-  "main.css": "/Statistics-App/static/css/main.77af5489.chunk.css",
-  "main.js": "/Statistics-App/static/js/main.cd4f5324.chunk.js",
-  "main.js.map": "/Statistics-App/static/js/main.cd4f5324.chunk.js.map",
+  "main.css": "/Statistics-App/static/css/main.d403c394.chunk.css",
+  "main.js": "/Statistics-App/static/js/main.ac130d15.chunk.js",
+  "main.js.map": "/Statistics-App/static/js/main.ac130d15.chunk.js.map",
   "runtime~main.js": "/Statistics-App/static/js/runtime~main.f6795ac4.js",
   "runtime~main.js.map": "/Statistics-App/static/js/runtime~main.f6795ac4.js.map",
-  "static/js/2.81606434.chunk.js": "/Statistics-App/static/js/2.81606434.chunk.js",
-  "static/js/2.81606434.chunk.js.map": "/Statistics-App/static/js/2.81606434.chunk.js.map",
+  "static/js/2.4dc3817b.chunk.js": "/Statistics-App/static/js/2.4dc3817b.chunk.js",
+  "static/js/2.4dc3817b.chunk.js.map": "/Statistics-App/static/js/2.4dc3817b.chunk.js.map",
   "index.html": "/Statistics-App/index.html",
-  "precache-manifest.c21e05c409fa9add9500fe22bccd9a27.js": "/Statistics-App/precache-manifest.c21e05c409fa9add9500fe22bccd9a27.js",
+  "precache-manifest.540af020941ad9635443bf607db902b5.js": "/Statistics-App/precache-manifest.540af020941ad9635443bf607db902b5.js",
   "service-worker.js": "/Statistics-App/service-worker.js",
-  "static/css/main.77af5489.chunk.css.map": "/Statistics-App/static/css/main.77af5489.chunk.css.map"
+  "static/css/main.d403c394.chunk.css.map": "/Statistics-App/static/css/main.d403c394.chunk.css.map"
 }
