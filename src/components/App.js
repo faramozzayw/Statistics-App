@@ -9,7 +9,7 @@ class App extends Component {
       <div className="App">
         <Jumbotron />
         <main className="App-body">
-          <Form />
+          <Form/>
         </main>
       </div>
     );

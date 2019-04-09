@@ -1,12 +1,16 @@
 import React, { Component } from 'react';
-import Calculation from './../function/Calculation';
-import ParseToArray from './../function/ParseToArray';
+import Calculation from './../modules/Calculation';
+import ParseToArray from './../modules/ParseToArray';
 
 export default class  extends Component {
 	state = {
 		x:'',
 		n: '',
-		result: {}
+		result: {
+			average: null,
+			deviation: null,
+			variance: null
+		}
 	}
 
 	handleInputChange = e => this.setState({[e.target.name]: e.target.value})
@@ -22,14 +26,16 @@ export default class  extends Component {
 			return;
 		}
 
-		const [x, n] = [ParseToArray(this.state.x), ParseToArray(this.state.n)]
+		const [x, n] = [ParseToArray(this.state.x), ParseToArray(this.state.n)];
 		if (x.length !== n.length) {
 			alert('Input error. Check the correctness of the data.')
 			return;
 		}
 
 		let result = Calculation(x, n);
-		console.log("result", result);
+		this.setState({
+			result: Object.assign(result)
+		});
 	}
 
 	render()  {
