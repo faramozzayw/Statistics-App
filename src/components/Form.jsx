@@ -4,6 +4,7 @@ import Calculation from './../modules/Calculation';
 import ParseToArray from './../modules/ParseToArray';
 
 import Card from './Card';
+import HelpCard from './HelpCard';
 
 export default class Form extends Component {
 	state = {
@@ -15,7 +16,8 @@ export default class Form extends Component {
 			variance: null
 		},
 		canGetResult: false,
-		showResult: false
+		showResult: false,
+		showHelp: false
 	}
 
 	handleInputChange = e => this.setState({
@@ -28,7 +30,7 @@ export default class Form extends Component {
 		e.preventDefault();
 		console.clear();
 
-		let regExp = /[a-zа-я\.]/g;
+		let regExp = /[a-zа-я]/g;
 
 		if (regExp.test(this.state.x) || regExp.test(this.state.n) 
 			|| this.state.x.trim() === '' || this.state.n.trim() === '') {
@@ -61,11 +63,20 @@ export default class Form extends Component {
 		this.state.canGetResult && this.setState({ showResult: !this.state.showResult });
 	}
 
+	getHelpClick = e => {
+		e.preventDefault();
+
+		this.setState({
+			showHelp: !this.state.showHelp
+		})
+	}
+
 	render()  {
 		const resultCard = this.state.showResult && (
 			<Card average={this.state.result.average} deviation={this.state.result.deviation} variance={this.state.result.variance} />
 		);
 		const resultButtonText = this.state.showResult ? "Hide result" : "Show result";
+		const helpCard = this.state.showHelp && <HelpCard/>;
 		return (
 			<div className="uk-container uk-width-large">
 				<form>
@@ -88,6 +99,9 @@ export default class Form extends Component {
 			        </div>				
 			        <button className="uk-button uk-button-primary uk-width-1-1 uk-margin-small-bottom"
 			        		onClick={this.handleClick.bind(this)}>Start calculus</button>
+			        <button className="uk-button uk-button-danger uk-width-1-1 uk-margin-small-bottom"
+			        		onClick={this.getHelpClick.bind(this)}>Need help?</button>
+			        {helpCard}
 			        <button className={`uk-button ${ this.state.canGetResult ? "uk-button-primary" : "uk-button-secondary" } uk-width-1-1 uk-margin-small-bottom` }
 			        		onClick={this.getResultClick.bind(this)}>{resultButtonText}</button>
 			        </div>

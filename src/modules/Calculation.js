@@ -1,9 +1,4 @@
 const Calculation = (x, n) => {
-	console.log(`
-		[x]: ${x}
-		[n]: ${n}
-	`);
-
 	let resultObject = {
 		average: null,
 		deviation: null,
@@ -11,7 +6,6 @@ const Calculation = (x, n) => {
 	};
 
 	let sumOfN = n.reduce((accumulator, currentValue) => accumulator + currentValue);
-	console.log("[sumOfN]: ", sumOfN);
 
 	resultObject.average = (() => {
 		let result = 0;

@@ -14,12 +14,15 @@ const Card = ({average, deviation, variance}) => {
           </div>
           <div className="uk-card-body">
               <p>Average statistical: 
+                <br/>
                 <span className="uk-text-emphasis">{average}</span>
                </p>
               <p>Root mean square: 
+                <br/>
                 <span className="uk-text-emphasis">{deviation}</span>
                </p>
               <p>The variance value: 
+                <br/>
                 <span className="uk-text-emphasis">{variance}</span>
                </p>
           </div>
