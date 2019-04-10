@@ -10,9 +10,9 @@
   align-items: center;
   font-size: calc(10px + 2vmin);
   color: white;
-  padding-top: 5%;
+  padding-top: 1.75%;
 }
 
 .Card {
-	max-width: 35rem;
+  font-size: 1.25rem;
 }

@@ -28,7 +28,7 @@ export default class Form extends Component {
 		e.preventDefault();
 		console.clear();
 
-		let regExp = new RegExp('/[a-zа-я\.]/gi');
+		let regExp = /[a-zа-я\.]/g;
 
 		if (regExp.test(this.state.x) || regExp.test(this.state.n) 
 			|| this.state.x.trim() === '' || this.state.n.trim() === '') {
@@ -67,7 +67,7 @@ export default class Form extends Component {
 		);
 		const resultButtonText = this.state.showResult ? "Hide result" : "Show result";
 		return (
-			<div className="uk-container">
+			<div className="uk-container uk-width-large">
 				<form>
 			    <fieldset className="uk-fieldset">
 			        <legend className="uk-legend">A inputting data</legend>		
@@ -92,6 +92,7 @@ export default class Form extends Component {
 			        		onClick={this.getResultClick.bind(this)}>{resultButtonText}</button>
 			        </div>
 			    </fieldset>
+
 				</form>
 				{resultCard}
 			</div>
