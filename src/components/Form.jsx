@@ -42,14 +42,12 @@ export default class Form extends Component {
 			return;
 		}
 
-		(() => {
-			for (let i = 0; i < x.length; i++) {
-				if (x[i] > x[i + 1]) {
-					alert('Input error. Review the correctness of the data.');
-					return;
-				}
+		for (let i = 0; i < x.length; i++) {
+			if (x[i] >= x[i + 1]) {
+				alert('Input error. Review the correctness of the data.');
+				return;
 			}
-		})();
+		}
 
 		let result = Calculation(x, n);
 		this.setState({
