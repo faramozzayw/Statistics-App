@@ -6,7 +6,7 @@ import ParseToArray from './../modules/ParseToArray';
 import Card from './Card';
 import HelpCard from './HelpCard';
 
-export default class Form extends Component {
+export default class StaticForm extends Component {
 	state = {
 		x:'',
 		n: '',
