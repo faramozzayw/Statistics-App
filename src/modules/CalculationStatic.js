@@ -1,4 +1,4 @@
-const Calculation = (x, n) => {
+const CalculationStatic = (x, n) => {
 	let resultObject = {
 		average: null,
 		deviation: null,
@@ -32,4 +32,4 @@ const Calculation = (x, n) => {
 	return resultObject;
 }
 
-export default Calculation;
+export default CalculationStatic;

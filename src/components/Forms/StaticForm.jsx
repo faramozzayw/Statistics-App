@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 
-import Calculation from './../modules/Calculation';
-import ParseToArray from './../modules/ParseToArray';
+import CalculationStatic from './../../modules/CalculationStatic';
+import ParseToArray from './../../modules/ParseToArray';
 
-import Card from './Card';
-import HelpCard from './HelpCard';
+import StaticCard from './../Cards/StaticCard';
+import StaticHelpCard from './../Cards/StaticHelpCard';
 
-export default class Form extends Component {
+export default class StaticForm extends Component {
 	state = {
 		x:'',
 		n: '',
@@ -51,7 +51,7 @@ export default class Form extends Component {
 			}
 		}
 
-		let result = Calculation(x, n);
+		let result = CalculationStatic(x, n);
 		this.setState({
 			result: Object.assign(result),
 			canGetResult: true
@@ -73,10 +73,10 @@ export default class Form extends Component {
 
 	render()  {
 		const resultCard = this.state.showResult && (
-			<Card average={this.state.result.average} deviation={this.state.result.deviation} variance={this.state.result.variance} />
+			<StaticCard average={this.state.result.average} deviation={this.state.result.deviation} variance={this.state.result.variance} />
 		);
 		const resultButtonText = this.state.showResult ? "Hide result" : "Show result";
-		const helpCard = this.state.showHelp && <HelpCard/>;
+		const helpCard = this.state.showHelp && <StaticHelpCard/>;
 		return (
 			<div className="uk-container uk-width-large">
 				<form>
