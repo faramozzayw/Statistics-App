@@ -11,10 +11,10 @@ export default class DynamicForm extends Component {
 	state = {
 		y:'',
 		t: '',
+		equal: true,
 		result: {
 			average: null,
-			deviation: null,
-			variance: null,
+			momentAverage: null,
 			absIncrease: null
 		},
 		canGetResult: false,
@@ -28,6 +28,19 @@ export default class DynamicForm extends Component {
 		showResult: false
 	})
 
+	handleCheckboxChange = e => {
+		e.target.name === 'equalYes' ? 
+		this.setState({
+			equal: true,
+			canGetResult: false,
+			showResult: false
+		}) : this.setState({
+			equal: false,
+			canGetResult: false,
+			showResult: false
+		})
+	}
+
 	handleClick = e => {
 		e.preventDefault();
 		console.clear();
@@ -40,13 +53,13 @@ export default class DynamicForm extends Component {
 			return;
 		}
 
-		const [y, t] = [ParseToArray(this.state.y), DateToNumber(this.state.t)];
+		const [y, t, equal] = [ParseToArray(this.state.y), DateToNumber(this.state.t), equal];
 		if (y.length !== t.length) {
 			alert('Input error. Review the correctness of the data.');
 			return;
 		}
 
-		let result = CalculationDynamic(y, t);
+		let result = CalculationDynamic(y, t, equal);
 		this.setState({
 			result: Object.assign(result),
 			canGetResult: true
@@ -70,13 +83,14 @@ export default class DynamicForm extends Component {
 		const resultCard = this.state.showResult && (
 			<DynamicCard 
 				average={this.state.result.average} 
-				deviation={this.state.result.deviation} 
-				variance={this.state.result.variance}
+				momentAverage={this.state.result.momentAverage}
 				absIncrease={this.state.result.absIncrease}
+				equal={this.state.equal}
 			/>
 		);
 		const resultButtonText = this.state.showResult ? "Hide result" : "Show result";
 		const helpCard = this.state.showHelp && <DynamicHelpCard/>;
+		console.log(this.state);
 		return (
 			<div className="uk-container uk-width-large">
 				<form>
@@ -91,12 +105,23 @@ export default class DynamicForm extends Component {
 			            				/>
 			         	</div>
 			         	<div className="uk-margin">
-			            <input className="uk-input uk-form-large" type="text" placeholder="Input a frequency" id="n"
+			            <input className="uk-input uk-form-large" type="text" placeholder="Input a dates" id="n"
 			            				value={this.state.t}
 			            				name='t'
 													onChange={this.handleInputChange.bind(this)}
 			            				/>
 			        	</div>
+			        	<div className="uk-margin uk-card uk-card-default uk-card-small uk-card-body">
+			        		<div className="uk-grid-small uk-child-width-auto uk-grid">
+			        			<h4>The interval between dates is equal for all?</h4>
+            				<label>
+            					<input className="uk-radio" type="radio" name="equalYes" checked={this.state.equal ===  true} onChange={this.handleCheckboxChange.bind(this)}/> Yes!
+            				</label>
+            				<label>
+            					<input className="uk-radio" type="radio" name="equalNo"  checked={this.state.equal ===  false} onChange={this.handleCheckboxChange.bind(this)}/> No..
+            				</label>
+        					</div>
+        				</div>
 			        	<button className="uk-button uk-button-primary uk-width-1-1 uk-margin-small-bottom"
 			        			onClick={this.handleClick.bind(this)}>Start calculus</button>
 			        	<button className="uk-button uk-button-danger uk-width-1-1 uk-margin-small-bottom"

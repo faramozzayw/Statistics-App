@@ -34,7 +34,7 @@ class App extends Component {
     const staticFrom = this.state.StaticForm && <StaticForm />;
     const dynamicForm = this.state.DynamicForm && <DynamicForm />;
     const returnButton =  this.state.select && (
-      <div className="uk-container uk-width-large uk-flex uk-flex-center">
+      <div className="uk-container uk-width-medium uk-flex uk-flex-center">
         <button 
             className="uk-button uk-button-danger  uk-margin-small-bottom" 
             onClick={this.returnBackClick.bind(this)}
