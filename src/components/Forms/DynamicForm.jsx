@@ -1,19 +1,21 @@
 import React, { Component } from 'react';
 
-import Calculation from './../modules/Calculation';
-import ParseToArray from './../modules/ParseToArray';
+import CalculationDynamic from './../../modules/CalculationDynamic';
+import ParseToArray from './../../modules/ParseToArray';
+import DateToNumber from './../../modules/DateToNumber';
 
-import Card from './Card';
-import HelpCard from './HelpCard';
+import DynamicCard from './../Cards/DynamicCard';
+import DynamicHelpCard from './../Cards/DynamicHelpCard';
 
-export default class StaticForm extends Component {
+export default class DynamicForm extends Component {
 	state = {
-		x:'',
-		n: '',
+		y:'',
+		t: '',
 		result: {
 			average: null,
 			deviation: null,
-			variance: null
+			variance: null,
+			absIncrease: null
 		},
 		canGetResult: false,
 		showResult: false,
@@ -32,26 +34,19 @@ export default class StaticForm extends Component {
 
 		let regExp = /[a-zа-я]/g;
 
-		if (regExp.test(this.state.x) || regExp.test(this.state.n) 
-			|| this.state.x.trim() === '' || this.state.n.trim() === '') {
+		if (regExp.test(this.state.y) || regExp.test(this.state.t) 
+			|| this.state.y.trim() === '' || this.state.t.trim() === '') {
 			alert('Input error. Review the correctness of the data.');
 			return;
 		}
 
-		const [x, n] = [ParseToArray(this.state.x), ParseToArray(this.state.n)];
-		if (x.length !== n.length) {
+		const [y, t] = [ParseToArray(this.state.y), DateToNumber(this.state.t)];
+		if (y.length !== t.length) {
 			alert('Input error. Review the correctness of the data.');
 			return;
 		}
 
-		for (let i = 0; i < x.length; i++) {
-			if (x[i] >= x[i + 1]) {
-				alert('Input error. Review the correctness of the data.');
-				return;
-			}
-		}
-
-		let result = Calculation(x, n);
+		let result = CalculationDynamic(y, t);
 		this.setState({
 			result: Object.assign(result),
 			canGetResult: true
@@ -73,10 +68,15 @@ export default class StaticForm extends Component {
 
 	render()  {
 		const resultCard = this.state.showResult && (
-			<Card average={this.state.result.average} deviation={this.state.result.deviation} variance={this.state.result.variance} />
+			<DynamicCard 
+				average={this.state.result.average} 
+				deviation={this.state.result.deviation} 
+				variance={this.state.result.variance}
+				absIncrease={this.state.result.absIncrease}
+			/>
 		);
 		const resultButtonText = this.state.showResult ? "Hide result" : "Show result";
-		const helpCard = this.state.showHelp && <HelpCard/>;
+		const helpCard = this.state.showHelp && <DynamicHelpCard/>;
 		return (
 			<div className="uk-container uk-width-large">
 				<form>
@@ -85,25 +85,25 @@ export default class StaticForm extends Component {
 			        <div className="uk-margin">
 			        	<div className="uk-margin">
 			            <input className="uk-input uk-form-large" type="text" placeholder="Input a value" id="x"
-			            				value={this.state.x}
-			            				name='x'
+			            				value={this.state.y}
+			            				name='y'
 													onChange={this.handleInputChange.bind(this)}
 			            				/>
 			         	</div>
 			         	<div className="uk-margin">
 			            <input className="uk-input uk-form-large" type="text" placeholder="Input a frequency" id="n"
-			            				value={this.state.n}
-			            				name='n'
+			            				value={this.state.t}
+			            				name='t'
 													onChange={this.handleInputChange.bind(this)}
 			            				/>
-			        </div>				
-			        <button className="uk-button uk-button-primary uk-width-1-1 uk-margin-small-bottom"
-			        		onClick={this.handleClick.bind(this)}>Start calculus</button>
-			        <button className="uk-button uk-button-danger uk-width-1-1 uk-margin-small-bottom"
-			        		onClick={this.getHelpClick.bind(this)}>Need help?</button>
-			        {helpCard}
-			        <button className={`uk-button ${ this.state.canGetResult ? "uk-button-primary" : "uk-button-secondary" } uk-width-1-1 uk-margin-small-bottom` }
-			        		onClick={this.getResultClick.bind(this)}>{resultButtonText}</button>
+			        	</div>
+			        	<button className="uk-button uk-button-primary uk-width-1-1 uk-margin-small-bottom"
+			        			onClick={this.handleClick.bind(this)}>Start calculus</button>
+			        	<button className="uk-button uk-button-danger uk-width-1-1 uk-margin-small-bottom"
+			        			onClick={this.getHelpClick.bind(this)}>Need help?</button>
+			        	{helpCard}
+			        	<button className={`uk-button ${ this.state.canGetResult ? "uk-button-primary" : "uk-button-secondary" } uk-width-1-1 uk-margin-small-bottom` }
+			        			onClick={this.getResultClick.bind(this)}>{resultButtonText}</button>
 			        </div>
 			    </fieldset>
 

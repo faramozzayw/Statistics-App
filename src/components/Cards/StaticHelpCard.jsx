@@ -1,6 +1,6 @@
 import React from 'react';
 
-const HelpCard = () => {
+const StaticHelpCard = () => {
   return (
     <div className="Card uk-margin-small-bottom">
       <div className="uk-card uk-card-default uk-card-small uk-card-body">
@@ -18,4 +18,4 @@ const HelpCard = () => {
   )
 }
 
-export default HelpCard;
+export default StaticHelpCard;

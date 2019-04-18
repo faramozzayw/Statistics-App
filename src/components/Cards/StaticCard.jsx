@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Card = ({average, deviation, variance}) => {
+const StaticCard = ({average, deviation, variance}) => {
   return (
     <div className="Card">
       <div className="uk-card uk-card-default uk-card-small uk-card-body">
@@ -31,5 +31,4 @@ const Card = ({average, deviation, variance}) => {
   )
 }
 
-
-export default Card;
+export default StaticCard;

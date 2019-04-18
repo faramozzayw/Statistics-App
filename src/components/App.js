@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import '../css/App.css';
 import Jumbotron from './Jumbotron';
-import StaticForm from './StaticForm';
-import SelectForm from './SelectForm';
-import DynamicForm from './DynamicForm';
+import StaticForm from './Forms/StaticForm';
+import SelectForm from './Forms/SelectForm';
+import DynamicForm from './Forms/DynamicForm';
 
 class App extends Component {
   state = {
@@ -39,7 +39,7 @@ class App extends Component {
             className="uk-button uk-button-danger  uk-margin-small-bottom" 
             onClick={this.returnBackClick.bind(this)}
             name="static"
-         >Return back!</button>
+         >Return back</button>
       </div>
     );
 
