@@ -53,7 +53,7 @@ export default class DynamicForm extends Component {
 			return;
 		}
 
-		const [y, t, equal] = [ParseToArray(this.state.y), DateToNumber(this.state.t), equal];
+		const [y, t, equal] = [ParseToArray(this.state.y), DateToNumber(this.state.t), this.state.equal];
 		if (y.length !== t.length) {
 			alert('Input error. Review the correctness of the data.');
 			return;

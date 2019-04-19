@@ -6,7 +6,7 @@ const CalculationDynamic = (y, t, equal) => {
 	};
 
 	let n = y.length;
-	resultObject.average = (() => y.reduce((accumulator, currentValue) => accumulator + currentValue) / n)();
+	resultObject.average = (() => y.reduce((accum, currentValue) => accum + currentValue) / n)();
 
 	if (equal) {
 		resultObject.momentAverage = (() => {
@@ -23,7 +23,7 @@ const CalculationDynamic = (y, t, equal) => {
 		resultObject.momentAverage = (() => {
 			let result = 0;
 			for (let i = 0; i < n; i++) result += y[i] * t[i];
-			result /= t.reduce((accumulator, currentValue) => accumulator + currentValue);
+			result /= t.reduce((accum, currentValue) => accum + currentValue);
 			return result;
 		})();
 	}
